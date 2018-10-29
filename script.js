@@ -6,6 +6,7 @@
 
 // fasti sem segir til um hve marga leiki eigi að spila
 const GAMES_TO_PLAY = 10;
+var coolteljari = 0;
 
 /**
  * Birtir upplýsingar um leik og eftir að notandi samþykkir spilar fyrsta leik
@@ -13,7 +14,8 @@ const GAMES_TO_PLAY = 10;
  * Eftir leik er notanda boðið að spila annan leik, ef ekki hættir forrit.
  */
 function start() {
-  villa;
+  alert('Markmiðið er að svara eins mörgum af 10 dæmum rétt eins hratt og mögulegt er.');
+  play();
 }
 
 /**
@@ -28,8 +30,28 @@ function start() {
  *
  */
 function play() {
-}
+  const array_timi = [GAMES_TO_PLAY];
+  var teljari = 0;
+  var sum = 0;
 
+  do {
+    var start = new Date();
+    ask();
+    var end =  new Date()
+    
+    var timi = (end - start)/1000;
+
+    array_timi [teljari] = timi;
+    teljari++;
+  } while (teljari<GAMES_TO_PLAY);
+
+  for(i =0; i<GAMES_TO_PLAY; i++){
+    sum = array_timi[i] + sum;
+  }
+  alert('þú svaraðir ' + coolteljari + ' af ' + GAMES_TO_PLAY +' rétt' )
+  alert('Meðal tími á dæmi er : ' + sum/GAMES_TO_PLAY);
+
+}
 /**
  * Spyr einnar spurningar og skilar upplýsingum um svar (mögulega með því að
  * nota true, false og null ef notandi hættir). Birtir notanda propmpt til að
@@ -45,7 +67,48 @@ function play() {
  * Sniðugt væri að færa það að búa til spurningu í nýtt fall sem ask() kallar í.
  */
 function ask() {
+  const plus_minus1 = randomNumber(1, 100);
+  const plus_minus2 = randomNumber(1, 100);
+  const sinnum1 = randomNumber(1, 10);
+  const sinnum2 = randomNumber(1, 10);
+  const deiling = randomNumber(2, 10);
+  const deiling2 = deiling * randomNumber(2, 10);
+  const tegd = randomNumber(1, 4);
+  var answer;
+
+  if (tegd === 1) {
+    var d1 = plus_minus1 + plus_minus2;
+    var input1 = prompt(plus_minus1 + '+' + plus_minus2);
+    var i1 = console.log(input1);
+    if(input1 === d1) coolteljari++;
+    return input1;
+  }
+
+  else if (tegd === 2) {
+    var d2 = plus_minus1 - plus_minus2;
+    var input2 = prompt(plus_minus1 + '-' + plus_minus2);
+    var i2 = console.log(input2);
+    if (input2 === d2) coolteljari++;
+    return input2;
+  }
+
+  else if (tegd === 3) {
+    var d3 = sinnum1 * sinnum2;
+    var input3 = prompt(sinnum1 + '*' + sinnum2);
+    var i3 = console.log(input3);
+    if (input3 === d3) coolteljari++;
+    return input3;
+  }
+
+  else if (tegd === 4) {
+    var d4 = deiling / deiling2;
+    var input4 = prompt(deiling + '/' + deiling2);
+    var i4 = console.log(input4);
+    if (input4 === d4) coolteljari++;
+    return input4;
+  }
 }
+
 
 /**
  * Skilar tölu af handahófi á bilinu [min, max]
@@ -56,3 +119,4 @@ function randomNumber(min, max) {
 
 // Byrjar leik
 start();
+
