@@ -14,8 +14,25 @@ var coolteljari = 0;
  * Eftir leik er notanda boðið að spila annan leik, ef ekki hættir forrit.
  */
 function start() {
-  alert('Markmiðið er að svara eins mörgum af 10 dæmum rétt eins hratt og mögulegt er.');
-  play();
+  var con = true;
+  do{
+    con = confirm("Viltu spilla nýjan leik? (Ok = já, cancel = nei)");
+    var txt;
+    
+    if (con === true) {
+      txt = "Nýr leikur"
+    }
+    else {
+      alert("Kannski einhvern tíman seinna, bye");
+      throw '';
+    }
+    alert(txt);
+    
+    alert('Markmiðið er að svara eins mörgum af 10 dæmum rétt eins hratt og mögulegt er.');
+    play();
+  }
+  while (con === true)
+  
 }
 
 /**
@@ -78,33 +95,41 @@ function ask() {
 
   if (tegd === 1) {
     var d1 = plus_minus1 + plus_minus2;
-    var input1 = prompt(plus_minus1 + '+' + plus_minus2);
-    var i1 = console.log(input1);
-    if(input1 === d1) coolteljari++;
+    var input1 = parseInt(prompt(plus_minus1 + '+' + plus_minus2));
+    if(input1 === null){
+      return;
+    }
+    else if (input1 === d1) coolteljari++;
     return input1;
   }
 
   else if (tegd === 2) {
     var d2 = plus_minus1 - plus_minus2;
-    var input2 = prompt(plus_minus1 + '-' + plus_minus2);
-    var i2 = console.log(input2);
-    if (input2 === d2) coolteljari++;
+    var input2 = parseInt(prompt(plus_minus1 + '-' + plus_minus2));
+    if (input2 === null) {
+      return;
+    }
+    else if (input2 === d2) coolteljari++;
     return input2;
   }
 
   else if (tegd === 3) {
     var d3 = sinnum1 * sinnum2;
-    var input3 = prompt(sinnum1 + '*' + sinnum2);
-    var i3 = console.log(input3);
-    if (input3 === d3) coolteljari++;
+    var input3 = parseInt(prompt(sinnum1 + '*' + sinnum2));
+    if (input3 === null) {
+      return;
+    }
+    else if (input3 === d3) coolteljari++;
     return input3;
   }
 
   else if (tegd === 4) {
-    var d4 = deiling / deiling2;
-    var input4 = prompt(deiling + '/' + deiling2);
-    var i4 = console.log(input4);
-    if (input4 === d4) coolteljari++;
+    var d4 = deiling2 / deiling;
+    var input4 = parseInt(prompt(deiling + '/' + deiling2));
+    if (input4 === null) {
+      return;
+    }
+    else if (input4 === d4) coolteljari++;
     return input4;
   }
 }
